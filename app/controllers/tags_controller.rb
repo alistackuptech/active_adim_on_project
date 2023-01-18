@@ -1,4 +1,5 @@
 class TagsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_tag, only: %i[ new]
   before_action :get_tag, only: %i[ edit update]
 

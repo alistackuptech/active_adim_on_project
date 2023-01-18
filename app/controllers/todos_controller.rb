@@ -1,4 +1,5 @@
 class TodosController < ApplicationController
+	before_action :authenticate_user!
 	before_action :set_todo, only: %i[  edit update destroy ]
 	before_action :get_campaign, only: %i[ new edit update create destroy ]
 

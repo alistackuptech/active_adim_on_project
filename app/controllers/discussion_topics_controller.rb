@@ -1,4 +1,5 @@
 class DiscussionTopicsController < ApplicationController  
+	before_action :authenticate_user!
 	before_action :set_discussion_topic, only: %i[ edit update destroy ]
 	before_action :get_campaign, only: %i[ index new edit update create destroy ]
 	
