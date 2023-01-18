@@ -1,0 +1,49 @@
+<%= form_with(model: campaign) do |form| %>
+    <% if @campaign.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(@campaign.errors.count, "error") %> prohibited this campaign from being saved:</h2>
+        <ul>
+          <% @campaign.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <%= form.label :Title, style: "display: block" %>
+      <%= form.text_field :title %>
+    </div>
+    <div class="form-group">
+      <%= form.label :Purpose, style: "display: block" %>
+      <%= form.text_field :purpose %>
+    </div>
+    <div calss="form-group">
+      <%= form.label :Estimated_Duration, style: "display: block" %>
+      <%= form.select :est_duration, ["within_1_week", "within_1_month", "within_3_month"]%>
+    </div>
+    <br>
+    <div id="list1" class="dropdown-check-list" tabindex="100">
+      <span class="anchor">Add Tags</span>
+      <ul class="items">
+      <%= form.collection_check_boxes(:tags, unique_tags, :id, :title) do |b| %>
+        <%= b.label(class: "check_box") { b.check_box( class: "add_margin") + b.text } %>
+        <br>
+      <% end %>
+      </ul>
+    </div>
+    <br><br>
+    <div>
+      <%= form.submit class:"btn btn-sm btn-success"%>
+    </div>
+  <% end %>
+
+<script>
+  var checkList = document.getElementById('list1');
+  checkList.getElementsByClassName('anchor')[0].onclick = function(evt) {
+  if (checkList.classList.contains('visible'))
+    checkList.classList.remove('visible');
+  else
+    checkList.classList.add('visible');
+  }
+</script>
+

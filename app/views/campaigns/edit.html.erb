@@ -1,0 +1,9 @@
+<% @heading="Editing Campaign"%>
+<%@arr_of_links=[{name:"Current Campaign",path:"@campaign"}]%>
+<%@arr_of_links.push({name:"To Campaigns",path:"campaigns_path"})%>
+<%= render "layouts/custom_navbar", arr_links: @arr_of_links, campaign: @campaign, heading: @heading %>
+
+<br>
+<div class="container">
+  <%= render "form", campaign: @campaign, unique_tags: Tag.where.not(id: @p_tag_ids) %>
+</div>

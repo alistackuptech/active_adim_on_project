@@ -1,0 +1,7 @@
+<% @heading="New Campaign"%>
+<%@arr_of_links=[{name:"Back to Campaigns",path:"campaigns_path"}]%>
+<%= render "layouts/custom_navbar", arr_links: @arr_of_links, campaign: @campaign, heading: @heading %>
+<br>
+<div class="container">
+  <%= render "form", campaign: @campaign, unique_tags: Tag.all %>
+</div>

@@ -1,0 +1,22 @@
+<div>
+  <%= form_with model: [campaign, discussion_topic] do |form| %>
+    <% if discussion_topic.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(discussion_topic.errors.count, "error") %> prohibited this discussion_topic from being saved:</h2>
+        <ul>
+          <% discussion_topic.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <%= form.label :title, style: "display: block" %>
+      <%= form.text_field :title %>
+    </div>
+    <br>
+    <div>
+      <%= form.submit class:"btn btn-sm btn-success"%>
+    </div>
+  <% end %>
+</div>

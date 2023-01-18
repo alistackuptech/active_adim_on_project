@@ -1,0 +1,47 @@
+<% @heading="Campaigns"%>
+<%@arr_of_links=[]%>
+<%if current_user.type=="Expert"%>
+  <%@arr_of_links.push({name:"New Campaign",path:"new_campaign_path"})%>
+  <%@arr_of_links.push({name:"Novices",path:"users_path"})%>
+  <%@arr_of_links.push({name:"Tags",path:"tags_path"})%>
+<%end%>
+<%= render "layouts/custom_navbar", arr_links: @arr_of_links, heading: @heading %>
+
+<br>
+<div class="container">
+  <div  class="table-fixed table-hover bg-white" >
+      <table class="table table-hover" style="border-collapse: separate; border-spacing: 0 15px; border:10px;">
+          <thead style="font-size:15px; text-align:center;">
+              <tr class="" style="font-weight:300;">
+                  <th>Title</th>
+                  <th>Purpose</th>
+                  <th>Estimated Duration</th>
+                  <th>Show</th>
+                  <%if current_user.type=="Expert"%>
+                    <th>Update</th>
+                    <th>Delete</th>
+                  <%end%>
+              </tr>
+          </thead>
+          <tbody>
+              <% @campaigns.each do |campaign|%>
+                <tr class="bg-white" style="font-weight:380; font-size:13px; text-align:center;">
+                  <td style="width: 15%;"><%=campaign.title%></td>
+                  <td class="text-truncate" style="max-width: 12vw;"><%=campaign.purpose%></td>
+                  <td style="width: 15%"><%=campaign.est_duration%></td>
+                  <td style="width: 15%"><%= link_to "Show", campaign_path(campaign), class:"btn btn-sm btn-success" %></td>
+                  <%if current_user.type=="Expert" && current_user.id==campaign.expert_id%>
+                    <td style="width: 15%"><%=link_to "Edit", edit_campaign_path(campaign), class:"btn btn-sm btn-success"%></td>
+                    <td style="width: 15%;"><%= button_to "Destroy", campaign, method: :delete, class:"btn btn-sm btn-danger" %></td>
+                  <%elsif current_user.type=="Expert"%>
+                      <td style="width: 15%"><%=link_to "Edit", edit_campaign_path(campaign), class:"btn btn-sm btn-success disabled"%></td>
+                      <td style="width: 15%;"><%= button_to "Destroy", campaign, method: :delete, class:"btn disabled btn-sm btn-danger" %></td>
+                  <%end%>
+                </tr>
+              <% end%>
+          </tbody>
+      </table>
+  </div>
+</div>
+
+

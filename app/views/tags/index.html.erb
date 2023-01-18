@@ -1,0 +1,26 @@
+<% @heading="Tags"%>
+<%@arr_of_links=[{name:"New Tag",path:"new_tag_path"},{name:"Campaigns",path:"campaigns_path"}]%>
+<%= render "layouts/custom_navbar", arr_links: @arr_of_links, heading: @heading %>
+<br>
+<div class="container">
+  <div  class="table-fixed bg-white" >
+    <table class="table" style="border-collapse: separate; border-spacing: 0 15px; border:10px;">
+      <thead style="font-size:15px; text-align:center;">
+        <tr class="" style="font-weight:300;">
+          <th>Tag</th>
+          <th>Edit Tag</th>
+          <th>Delete Tag</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @tags.each do |tag| %>
+          <tr class="bg-white" style="font-weight:380; font-size:13px; text-align:center;">
+            <td style="width: 15%;"><%=tag.title%></td>
+            <td style="width: 15%"><%= link_to "Edit", edit_tag_path(tag), class:"btn btn-sm btn-success"%></td>
+            <td style="width: 15%;"><%= button_to 'Destroy', [tag],method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-sm btn-danger" %></td>
+          </tr>
+        <% end%>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<% @heading="Editing Todo # "+@todo.task%>
+<%@arr_of_links=[name:"To Campaign",path:"campaign_path(campaign)"]%>
+<%= render "layouts/custom_navbar", arr_links: @arr_of_links, campaign: @campaign, todo: @todo, heading: @heading %>
+
+<div class="container">
+  <%= render "form", campaign: @campaign, todo:@todo %>
+</div>

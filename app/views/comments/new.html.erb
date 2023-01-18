@@ -1,0 +1,20 @@
+<%@arr_of_links=[]%>
+<% if (params[:discussion_topic_id])%>
+  <% @arr_of_links.push(name:"To Comments",path:"discussion_topic_comments_path(@discussion_topic)")%>
+  <% @arr_of_links.push(name:"To Topic",path:"campaign_discussion_topics_path(@discussion_topic.campaign)")%>
+<% elsif (params[:campaign_id])%>
+  <%@campaign=Campaign.find(params[:campaign_id])%>
+  <%@arr_of_links.push(name:"To Campaign",path:"campaign_path(campaign)")%>
+<%end%>
+
+
+<%@heading="New Comment"%>
+<%= render "layouts/custom_navbar", arr_links: @arr_of_links, campaign: @campaign, discussion_topic: @discussion_topic, heading:@heading %>
+
+
+
+<br>
+<div class="container">
+  
+  <%= render "form", commentable: @commentable, comment: @commentable.comments.new %>
+</div>

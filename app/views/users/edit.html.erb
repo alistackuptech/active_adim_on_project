@@ -1,0 +1,22 @@
+<%@arr_of_links=[{name: "Novices", path:"users_path"}]%>
+<%= render "layouts/custom_navbar", arr_links: @arr_of_links, novice: @novice, heading:"Change Status" %>
+<br>
+<div class="container">
+  <%= form_with model: @novice do |f| %>    
+    <div class="field">
+      <%= f.radio_button :status, "qualified", checked: Novice.find(params[:id]).status=="qualified", onClick: "toggle(1);" %>
+      <%= f.label :status, "Qualified" %>
+      <br>
+      <%= f.radio_button :status, "not_qualified", checked: Novice.find(params[:id]).status=="not_qualified", onClick: "toggle(0);" %>
+      <%= f.label :status, "Not Qualified" %>
+      <br>
+      <%= f.radio_button :status, "banned", checked: Novice.find(params[:id]).status=="banned", onClick: "toggle(0);" %>
+      <%= f.label :status, "Banned" %>
+    </div>
+    <br>
+    <div>
+      <%= f.submit class:"btn btn-sm btn-primary" %>
+    </div>
+  <% end %>
+</div>
+

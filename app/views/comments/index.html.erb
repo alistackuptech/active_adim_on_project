@@ -1,0 +1,35 @@
+<% @heading="Comments for # "+ @discussion_topic.title%>
+<%@arr_of_links=[{name:"Add Comment",path:"new_discussion_topic_comment_path(discussion_topic)"}]%>
+<%@arr_of_links.push({name:"Discussion Topics",path:"campaign_discussion_topics_path(discussion_topic.campaign)"})%>
+<%= render "layouts/custom_navbar", arr_links: @arr_of_links, discussion_topic: @discussion_topic, heading: @heading %>
+<%= javascript_include_tag "application"%>
+<br>
+<div class="container">
+  <div  class="table-fixed bg-white" >
+      <table class="table" style="border-collapse: separate; border-spacing: 0 15px; border:10px;">
+          <tbody>
+            <thead style="font-size:15px; text-align:center;">
+              <tr class="" style="font-weight:300;">
+                <th>User ID</th>
+                <th>Comment</th>
+                <th>Edit</th>
+                <th>Destroy</th>
+              </tr>
+            </thead>
+              <% @comments.each do |comment|%>
+                <tr class="bg-white" style="font-weight:380; font-size:13px; text-align:center;">
+                <td style="width: 15%;"><%=comment.commentable_id%></td>
+                <td style="width: 15%;"><%=comment.title%></td>
+                <%if current_user.id==comment.user_id%>
+                  <td style="width: 15%"><%=link_to "Edit ", comment.commentable_type=="DiscussionTopic" ? edit_discussion_topic_comment_path(@discussion_topic, comment) : edit_campaign_comment_path(@campaign, comment), class:"btn btn-sm btn-primary"%></td>
+                  <td style="width: 15%"><%=button_to 'Destroy', comment.commentable_type=="DiscussionTopic" ? [@campaign, @discussion_topic, comment] : [@campaign, comment],method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-sm btn-danger"%></td>
+                <%else%>
+                  <td style="width: 15%"><%=link_to "Edit ", comment.commentable_type=="DiscussionTopic" ? edit_discussion_topic_comment_path(@discussion_topic, comment) : edit_campaign_comment_path(@campaign, comment), class:"btn btn-sm btn-primary disabled"%></td>
+                  <td style="width: 15%"><%=button_to 'Destroy', comment.commentable_type=="DiscussionTopic" ? [@campaign, @discussion_topic, comment] : [@campaign, comment],method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-sm btn-danger disabled"%></td>
+                <%end%>
+                </tr>
+              <% end%>
+          </tbody>
+      </table>
+  </div>
+</div>

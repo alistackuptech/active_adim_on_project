@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <h1>Greetings User # <%=@campaign.expert_id%><h1>
+  <body>
+    <h2>You have just created a campaign with the following credentials </h2>
+    <p>
+      Title:  <%= @campaign.title %>
+    </p>
+    <p>
+      Purpose:  <%= @campaign.purpose %>
+    </p>
+    <p>
+      Duration:  <%= @campaign.est_duration %>
+    </p>
+    <p>
+      To login to the site, just follow this link: <%=@url %>.
+    </p>
+    <p>Thanks for creating!</p>
+  </body>
+</html>

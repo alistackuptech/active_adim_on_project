@@ -1,0 +1,6 @@
+<%@arr_of_links=[name:"To Campaign",path:"campaign_path(campaign)"]%>
+<%= render "layouts/custom_navbar", arr_links: @arr_of_links, campaign: @campaign, heading:"New Todo" %>
+<br>
+<div class="container">
+  <%= render "form", campaign: @campaign, todo:@todo %>
+</div>

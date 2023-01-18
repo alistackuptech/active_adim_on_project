@@ -1,0 +1,25 @@
+<%@arr_of_links=[{name: "Campaigns",path: "campaigns_path"}]%>
+<%= render "layouts/custom_navbar", arr_links: @arr_of_links, novice: @novice, heading:"Novices" %>
+<br>
+<div class="container">
+      <div  class="table-fixed bg-white" >
+          <table class="table" style="border-collapse: separate; border-spacing: 0 15px; border:10px;">
+              <thead style="font-size:15px; text-align:center;">
+                  <tr class="" style="font-weight:300;">
+                      <th>Username</th>
+                      <th>Status</th>
+                      <th>Edit Status</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <% @users.each do |novice|%>
+                    <tr class="bg-white" style="font-weight:380; font-size:13px; text-align:center;">
+                      <td style="width: 15%;"><%=novice.username%></td>
+                      <td style="width: 15%;"><%=novice.status%></td>
+                      <td style="width: 15%"><%=link_to "Edit", edit_user_path(novice), class:"btn btn-sm btn-success"%></td>
+                    </tr>
+                  <% end%>
+              </tbody>
+          </table>
+      </div>
+    </div>

@@ -1,0 +1,8 @@
+<% @heading="Editing Topic # "+@discussion_topic.title%>
+<%@arr_of_links=[{name:"Back to Campaign",path:"campaigns_path(campaign)"}]%>
+<%= render "layouts/custom_navbar", arr_links: @arr_of_links, campaign: @campaign, heading: @heading %>
+
+<br>
+<div class="container">
+  <%= render "form", campaign: @campaign, discussion_topic: @discussion_topic %>
+</div>

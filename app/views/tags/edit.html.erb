@@ -1,0 +1,7 @@
+<% @heading="Editing Tag # "+ @tag.title%>
+<%@arr_of_links=[{name:"Campaigns",path:"campaigns_path"}]%>
+<%= render "layouts/custom_navbar", arr_links: @arr_of_links, heading: @heading %>
+
+<div class="container">
+  <%= render "form", tag: @tag %>
+</div>

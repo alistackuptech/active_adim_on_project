@@ -1,0 +1,21 @@
+<div>
+  <%= form_with model: [campaign, todo] do |form| %>
+    <% if todo.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(todo.errors.count, "error") %> prohibited this todo from being saved:</h2>
+        <ul>
+        <% todo.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <%= form.label :title, style: "display: block" %>
+      <%= form.text_field :task %>
+    </div>
+    <div>
+      <%= form.submit class:"btn btn-sm btn-success"%>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,86 @@
+<div class="container bg-white" style="max-width:400px; padding:30px">
+  <h2 style="text-align:center;">Sign up</h2>
+  <br>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="form-outline mb-4">
+      <%= f.label :email, class:"form-label" %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+
+
+    <div class="form-outline mb-4">
+      <%= f.label :username %><br />
+      <%= f.text_field :username, autofocus: true %>
+    </div>
+
+    <div class="form-outline mb-4">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password" %>
+    </div>
+
+    <div class="form-outline mb-4">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+
+    <div class="form-outline mb-4">
+        <%= f.label :status %><br />
+        <%= f.select :status, ["not_qualified","qualified","banned"]%>
+
+    </div>
+    
+
+    <br>
+    <div class="form-outline mb-4">
+      <%= f.label :type %>
+
+      <%= f.radio_button :type, "Expert", onClick: "toggle(1);" %>
+      <%= f.label :type, "Expert" %>
+
+      <%= f.radio_button :type, "Novice", checked: true, onClick: "toggle(0);" %>
+      <%= f.label :type, "Novice" %>
+    </div>
+
+    <div class="form-outline mb-4" id="prof_id">
+        <%= f.label :profession %><br />
+        <%= f.text_field :profession, autofocus: true %>
+      </div>
+
+      <div class="form-outline mb-4" id="service_id">
+          <%= f.label :service %><br />
+          <%= f.text_field :service, autofocus: true %>
+      </div>
+
+
+    <div class="actions">
+      <%= f.submit "Sign up", class:"btn btn-primary btn-sm mb-4" %>
+    </div>
+
+  <% end %>
+</div>
+
+<script>
+    document.getElementById('prof_id').style.display='none';
+    document.getElementById('service_id').style.display='none';
+
+    function toggle(x) {
+
+      if (x==0)
+      {
+        document.getElementById('prof_id').style.display='none';
+        document.getElementById('service_id').style.display='none';
+      }
+      else
+      { 
+        document.getElementById('prof_id').style.display='block';
+        document.getElementById('service_id').style.display='block';
+      }
+  }
+</script>
+
+

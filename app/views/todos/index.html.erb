@@ -1,0 +1,33 @@
+<%@arr_of_links=[]%>
+<%if current_user.id==@campaign.expert_id%>
+  <% @arr_of_links.push(name:"New Task",path:"new_campaign_todo_path(campaign)")%>
+<%end%>
+<%@arr_of_links.push(name:"To Campaign",path:"campaign_path(@campaign)")%>
+<%= render "layouts/custom_navbar", arr_links: @arr_of_links, campaign: @campaign, heading:"Tasks" %>
+<br>
+<div class="container">
+  <div  class="table-fixed bg-white" >
+    <table class="table" style="border-collapse: separate; border-spacing: 0 15px; border:10px;">
+      <thead style="font-size:15px; text-align:center;">
+        <tr class="" style="font-weight:300;">
+          <th>Task</th>
+          <%if current_user.id==@campaign.expert_id%>
+            <th>Edit</th>
+            <th>Destroy</th>
+          <%end%>
+        </tr>
+      </thead>
+      <tbody>
+        <% @todos.each do |todo| %>
+          <tr class="bg-white" style="font-weight:380; font-size:13px; text-align:center;">
+            <td style="width: 15%;"><%=todo.task%></td>
+            <%if current_user.id==todo.campaign.expert_id%>
+              <td style="width: 15%"><%= link_to "Edit Task", edit_campaign_todo_path(@campaign, todo), class:"btn btn-sm btn-success"%></td>
+              <td style="width: 15%;"><%= button_to 'Destroy Task', [@campaign, todo],method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-sm btn-danger" %></td>
+            <%end%>
+          </tr>
+        <% end%>
+      </tbody>
+    </table>
+  </div>
+</div>
